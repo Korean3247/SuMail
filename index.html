@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>이메일 요약 데모</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>이메일 요약 데모</h1>
+      <p class="subtitle">텍스트를 붙여넣고 요약 버튼만 누르세요.</p>
+    </header>
+
+    <section class="panel">
+      <label class="label">OpenAI API Key</label>
+      <div class="row">
+        <input id="apiKey" type="password" placeholder="sk-..." />
+        <button id="saveKeyBtn" class="ghost">키 저장</button>
+        <button id="clearKeyBtn" class="ghost">삭제</button>
+      </div>
+      <p class="hint">데모용입니다. 키는 브라우저(Local Storage)에만 저장되며 서버로 전송되지 않습니다.</p>
+    </section>
+
+    <section class="panel grid-2">
+      <div>
+        <label class="label">모델</label>
+        <div class="pill">gpt-4o-mini</div>
+      </div>
+      <div>
+        <label class="label">
+          출력 최대 토큰 <span id="maxTokensVal">300</span>
+        </label>
+        <input id="maxTokens" type="range" min="100" max="1200" step="50" value="300" />
+      </div>
+    </section>
+
+    <section class="panel">
+      <label class="label">이메일 스레드 텍스트</label>
+      <textarea id="emailText" placeholder="여기에 이메일/스레드 텍스트를 붙여넣으세요."></textarea>
+      <div class="row between">
+        <div class="row">
+          <button id="exKr" class="ghost small">예시(한국어)</button>
+          <button id="exEn" class="ghost small">예시(영어)</button>
+        </div>
+        <button id="summarizeBtn">요약하기</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="row between">
+        <h2>요약 결과</h2>
+        <div class="row">
+          <button id="copyBtn" class="ghost small">복사</button>
+          <button id="clearOutBtn" class="ghost small">지우기</button>
+        </div>
+      </div>
+      <pre id="out">(아직 요약 없음)</pre>
+    </section>
+
+    <script src="app.js"></script>
+  </body>
+</html>
