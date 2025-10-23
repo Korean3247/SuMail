@@ -21,3 +21,40 @@ button.small{padding:6px 10px;font-size:13px}
 pre#out{white-space:pre-wrap;background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.15);padding:12px;border-radius:10px;min-height:80px}
 footer{max-width:900px;margin:8px auto 64px;padding:0 16px;color:var(--muted)}
 a{color:#9ec2ff}
+/* --- Pretty summary renderer --- */
+.summary { white-space: normal; }
+
+.s-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 14px;
+  margin: 12px 0;
+}
+
+.s-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  color: #dfe8ff;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 999px;
+  font-size: 12px; font-weight: 700; letter-spacing: .2px;
+}
+
+.badge-blue { background:#1a2a5a; color:#9ec2ff; border:1px solid #294380; }
+.badge-green { background:#103b2b; color:#7cffc4; border:1px solid #1d6f51; }
+.badge-amber { background:#423001; color:#ffd38a; border:1px solid #7a5a0c; }
+
+.s-list { margin: 0; padding-left: 18px; }
+.s-list li { margin: 4px 0; }
+
+.s-table { width: 100%; border-collapse: collapse; }
+.s-table th, .s-table td {
+  border-bottom: 1px dashed rgba(255,255,255,0.15);
+  padding: 8px 6px; text-align: left; vertical-align: top;
+}
+.s-table th { color:#b9c9e9; font-weight:700; }
+.s-deadline { font-weight: 800; }
