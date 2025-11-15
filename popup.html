@@ -1,0 +1,58 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SuMail</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">Su<span style="color:#2cbf73">▭</span>ail</div>
+      <div class="row">
+        <span class="pill" id="modelPill">gpt-4o-mini</span>
+        <button id="openOptions" class="menu" title="Settings">☰</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Summary <button id="copySummary" class="copy" title="Copy">📋</button></h3>
+      <textarea id="inputText" placeholder="Paste an email thread here..."></textarea>
+      <div class="section-actions">
+        <div class="lang"><select id="language">
+          <option value="auto">Auto</option>
+          <option>English (US)</option>
+          <option>English (UK)</option>
+          <option>Japanese</option>
+          <option>Korean</option>
+          <option>Chinese</option>
+        </select></div>
+        <button id="btnSummarize" class="btn">See more details</button>
+      </div>
+      <div id="summaryOut" class="small" style="margin-top:8px;"></div>
+    </div>
+
+    <div class="card">
+      <h3>Emotion Analysis <span class="badge">beta</span></h3>
+      <div id="emotionOut" class="small">—</div>
+      <div class="section-actions">
+        <button id="btnAnalyze" class="btn secondary">See more details</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Email Templates</h3>
+      <div class="small">Apologies<br/>Dear Professor, Thank you for...</div>
+      <div class="section-actions">
+        <button id="moreTemplates" class="btn link">See more options</button>
+        <button id="useTemplate" class="btn secondary">Use this template</button>
+      </div>
+    </div>
+
+    <button id="generateEmail" class="btn generate">Generate Email</button>
+    <div id="toast" class="toast hidden"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+
+:root{
+  --bg:#f6f7f8; --card:#ffffff; --muted:#6b7280; --text:#111827;
+  --brand:#47c07a; --brand-dark:#36a766; --line:#e5e7eb;
+  --pill:#eef5ff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);}
+.container{width:340px; padding:12px;}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.logo{font-weight:800;letter-spacing:.3px}
+.menu{border:none;background:transparent;cursor:pointer}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
+.card h3{margin:0 0 8px 0;font-size:14px}
+.small{font-size:12px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:none;border-radius:10px;padding:8px 10px;background:var(--brand);color:#fff;cursor:pointer;font-weight:700}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.btn.secondary{background:#e8f5ee;color:#13633c;border:1px solid #cfe9d9}
+.btn.link{background:transparent;color:#13633c;border:1px dashed #cfe9d9}
+.row{display:flex;gap:8px;align-items:center}
+.input, textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff}
+textarea{min-height:90px;resize:vertical}
+.pill{display:inline-flex;gap:6px;align-items:center;background:var(--pill);border:1px solid #d8e7ff;color:#30518c;padding:2px 8px;border-radius:999px;font-size:11px}
+.section-actions{display:flex;gap:8px;margin-top:8px}
+.badge{padding:2px 8px;border-radius:999px;background:#fff3cd;border:1px solid #ffe59a;font-size:11px;color:#7a5a0c}
+.table{width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;margin-top:6px;border:1px solid var(--line)}
+.table th,.table td{font-size:12px;padding:6px;border-bottom:1px solid var(--line);text-align:left}
+.lang{position:relative}
+select{width:100%;padding:8px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.hr{height:1px;background:var(--line);margin:8px 0}
+.generate{position:sticky;bottom:8px;display:block;width:100%;}
+.toast{position:fixed;bottom:8px;left:8px;right:8px;background:#111827;color:#fff;padding:8px 10px;border-radius:8px;font-size:12px}
+.hidden{display:none}
+.copy{border:none;background:transparent;cursor:pointer;color:#6b7280}
