@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "SuMail (Email Summarizer)",
+  "name": "SuMail",
   "version": "0.1.0",
-  "description": "Summarize emails, analyze tone, and insert templates. MVP for the SuMail design.",
+  "description": "메일을 요약하고 감정·회신 템플릿까지 한 번에 제공하는 도우미입니다.",
   "icons": {
     "16": "assets/icon16.png",
     "32": "assets/icon32.png",
@@ -12,6 +12,7 @@
   "permissions": [
     "storage",
     "activeTab",
+    "contextMenus",
     "scripting"
   ],
   "action": {

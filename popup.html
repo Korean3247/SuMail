@@ -9,49 +9,105 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="logo">Su<span style="color:#2cbf73">▭</span>ail</div>
+      <div class="logo">SuMail</div>
       <div class="row">
-        <span class="pill" id="modelPill">gpt-4o-mini</span>
-        <button id="openOptions" class="menu" title="Settings">☰</button>
+        <button id="quickLinksBtn" class="btn link" style="padding:6px 10px;font-weight:600;">메일 바로가기</button>
+        <button id="openOptions" class="menu" title="설정 열기">⚙️</button>
       </div>
+    </div>
+    <div id="quickLinks" class="quick-links hidden">
+      <button class="btn secondary quick-link" data-url="https://mail.google.com">Gmail</button>
+      <button class="btn secondary quick-link" data-url="https://outlook.office.com/mail/">Outlook</button>
+      <button class="btn secondary quick-link" data-url="https://mail.yahoo.com/">Yahoo Mail</button>
     </div>
 
     <div class="card">
-      <h3>Summary <button id="copySummary" class="copy" title="Copy">📋</button></h3>
-      <textarea id="inputText" placeholder="Paste an email thread here..."></textarea>
+      <h3>요약</h3>
+      <textarea id="inputText" placeholder="여기에 이메일을 붙여넣어 주세요"></textarea>
+      <div class="char-row"><span id="charCount">2,000자 남음</span></div>
       <div class="section-actions">
-        <div class="lang"><select id="language">
-          <option value="auto">Auto</option>
-          <option>English (US)</option>
-          <option>English (UK)</option>
-          <option>Japanese</option>
-          <option>Korean</option>
-          <option>Chinese</option>
-        </select></div>
-        <button id="btnSummarize" class="btn">See more details</button>
+        <button id="btnSummarize" class="btn">요약하기</button>
+        <button id="btnTranslate" class="btn secondary">번역하기</button>
       </div>
       <div id="summaryOut" class="small" style="margin-top:8px;"></div>
+      <div id="translateOut" class="small" style="margin-top:8px;"></div>
     </div>
 
     <div class="card">
-      <h3>Emotion Analysis <span class="badge">beta</span></h3>
-      <div id="emotionOut" class="small">—</div>
+      <h3>감정 분석</h3>
+      <div id="emotionOut" class="small">감정 분석 결과가 여기 표시됩니다.</div>
       <div class="section-actions">
-        <button id="btnAnalyze" class="btn secondary">See more details</button>
+        <button id="btnAnalyze" class="btn secondary">분석하기</button>
       </div>
     </div>
 
     <div class="card">
-      <h3>Email Templates</h3>
-      <div class="small">Apologies<br/>Dear Professor, Thank you for...</div>
+      <h3 class="title-row">
+        <span>회신 템플릿</span>
+        <button id="copyTemplate" class="copy icon-btn" title="복사" aria-label="템플릿 복사">
+          <svg viewBox="0 0 24 24" class="icon-copy" aria-hidden="true">
+            <path d="M9 7h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 3h8a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </h3>
+      <div class="template-options">
+        <label class="full-width">맞춤 지시 (선택)
+          <textarea id="tplCustom" placeholder="맞춤 지시를 입력하세요 (언어/톤/길이/포함할 내용 등)"></textarea>
+        </label>
+      </div>
+      <div class="char-row"><span id="customCount">300자 남음</span></div>
+      <div id="templateOut" class="small" style="margin-top:8px;">요약 후 템플릿이 여기 표시됩니다.</div>
       <div class="section-actions">
-        <button id="moreTemplates" class="btn link">See more options</button>
-        <button id="useTemplate" class="btn secondary">Use this template</button>
+        <button id="btnGenerateTemplate" class="btn secondary hidden">템플릿 생성</button>
       </div>
     </div>
 
-    <button id="generateEmail" class="btn generate">Generate Email</button>
+    <div class="section-actions">
+      <button id="resetState" class="btn secondary full">모든 진행 초기화</button>
+    </div>
+
     <div id="toast" class="toast hidden"></div>
+  </div>
+  <div id="settingsPanel" class="settings-panel hidden">
+    <div class="settings-header">
+      <div class="logo">설정</div>
+      <button id="closeSettings" class="menu" aria-label="닫기">✕</button>
+    </div>
+    <div class="card settings-card">
+      <h3>API 키</h3>
+      <input id="apiKeySetting" class="input" type="password" placeholder="sk-...">
+      <div class="section-actions">
+        <button id="saveSettings" class="btn">저장</button>
+        <button id="clearSettings" class="btn secondary">삭제</button>
+      </div>
+      <div class="small note"><b>chrome.storage.sync</b>에 저장되어 로그인한 Chrome 프로필 간 동기화됩니다.</div>
+    </div>
+    <div class="card settings-card">
+      <h3>사용 모델</h3>
+      <div class="small">gpt-4o-mini</div>
+    </div>
+    <div class="card settings-card">
+      <h3>테마</h3>
+      <div class="section-actions" style="align-items:center;">
+        <label class="switch">
+          <input id="themeSelect" type="checkbox">
+          <span class="switch-track"><span class="switch-thumb"></span></span>
+          <span class="switch-label">다크 모드 사용</span>
+        </label>
+      </div>
+    </div>
+    <div class="card settings-card">
+      <h3>템플릿 자동 생성</h3>
+      <div class="section-actions" style="align-items:center;">
+        <label class="switch">
+          <input id="autoTemplateSetting" type="checkbox">
+          <span class="switch-track"><span class="switch-thumb"></span></span>
+          <span class="switch-label">요약 후 회신 템플릿을 자동 생성합니다.</span>
+        </label>
+        <button id="applyAutoTemplateSetting" class="btn secondary hidden" type="button">적용</button>
+      </div>
+    </div>
   </div>
   <script src="popup.js"></script>
 </body>
