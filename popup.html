@@ -9,7 +9,10 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="logo"><img src="SuMail_logo.png" alt="SuMail 로고" class="logo-img"></div>
+      <div class="logo">
+        <img src="SuMail_logo.png" alt="SuMail 로고" class="logo-img logo-img-light">
+        <img src="SuMail_logo_white.png" alt="SuMail 로고 다크" class="logo-img logo-img-dark">
+      </div>
       <div class="row">
         <button id="quickLinksBtn" class="btn link" style="padding:6px 10px;font-weight:600;">메일 바로가기</button>
         <button id="openOptions" class="menu" title="설정 열기">⚙️</button>
@@ -22,7 +25,7 @@
     </div>
 
     <div class="card">
-      <h3>요약</h3>
+      <h3 id="summaryTitle">요약</h3>
       <textarea id="inputText" placeholder="여기에 이메일을 붙여넣어 주세요"></textarea>
       <div class="char-row"><span id="charCount">2,000자 남음</span></div>
       <div class="section-actions">
@@ -34,7 +37,7 @@
     </div>
 
     <div class="card">
-      <h3>감정 분석</h3>
+      <h3 id="emotionTitle">감정 분석</h3>
       <div id="emotionOut" class="small">감정 분석 결과가 여기 표시됩니다.</div>
       <div class="section-actions">
         <button id="btnAnalyze" class="btn secondary">분석하기</button>
@@ -43,7 +46,7 @@
 
     <div class="card">
       <h3 class="title-row">
-        <span>회신 템플릿</span>
+        <span id="templateTitle">회신 템플릿</span>
         <button id="copyTemplate" class="copy icon-btn" title="복사" aria-label="템플릿 복사">
           <svg viewBox="0 0 24 24" class="icon-copy" aria-hidden="true">
             <path d="M9 7h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -52,7 +55,7 @@
         </button>
       </h3>
       <div class="template-options">
-        <label class="full-width">맞춤 지시 (선택)
+        <label class="full-width"><span id="customLabel">맞춤 지시 (선택)</span>
           <textarea id="tplCustom" placeholder="맞춤 지시를 입력하세요 (언어/톤/길이/포함할 내용 등)"></textarea>
         </label>
       </div>
@@ -71,39 +74,48 @@
   </div>
   <div id="settingsPanel" class="settings-panel hidden">
     <div class="settings-header">
-      <div class="logo">설정</div>
+      <div class="logo" id="settingsTitle">설정</div>
       <button id="closeSettings" class="menu" aria-label="닫기">✕</button>
     </div>
     <div class="card settings-card">
-      <h3>API 키</h3>
+      <h3 id="apiTitle">API 키</h3>
       <input id="apiKeySetting" class="input" type="password" placeholder="sk-...">
       <div class="section-actions">
         <button id="saveSettings" class="btn">저장</button>
         <button id="clearSettings" class="btn secondary">삭제</button>
       </div>
-      <div class="small note"><b>chrome.storage.sync</b>에 저장되어 로그인한 Chrome 프로필 간 동기화됩니다.</div>
+      <div class="small note" id="apiNote"><b>chrome.storage.sync</b>에 저장되어 로그인한 Chrome 프로필 간 동기화됩니다.</div>
     </div>
     <div class="card settings-card">
-      <h3>사용 모델</h3>
+      <h3 id="modelTitle">사용 모델</h3>
       <div class="small">gpt-4o-mini</div>
     </div>
     <div class="card settings-card">
-      <h3>테마</h3>
+      <h3 id="langTitle">언어</h3>
+      <div class="section-actions" style="align-items:center;">
+        <select id="langSelect">
+          <option value="ko">한국어</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+    </div>
+    <div class="card settings-card">
+      <h3 id="themeTitle">테마</h3>
       <div class="section-actions" style="align-items:center;">
         <label class="switch">
           <input id="themeSelect" type="checkbox">
           <span class="switch-track"><span class="switch-thumb"></span></span>
-          <span class="switch-label">다크 모드 사용</span>
+          <span class="switch-label" id="themeLabel">다크 모드 사용</span>
         </label>
       </div>
     </div>
     <div class="card settings-card">
-      <h3>템플릿 자동 생성</h3>
+      <h3 id="autoTemplateTitle">템플릿 자동 생성</h3>
       <div class="section-actions" style="align-items:center;">
         <label class="switch">
           <input id="autoTemplateSetting" type="checkbox">
           <span class="switch-track"><span class="switch-thumb"></span></span>
-          <span class="switch-label">요약 후 회신 템플릿을 자동 생성합니다.</span>
+          <span class="switch-label" id="autoTemplateLabel">요약 후 회신 템플릿을 자동 생성합니다.</span>
         </label>
         <button id="applyAutoTemplateSetting" class="btn secondary hidden" type="button">적용</button>
       </div>

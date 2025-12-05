@@ -14,9 +14,12 @@ body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,
 .container{width:380px; padding:16px;border-radius:20px;position:relative;overflow:hidden;}
 .header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 [data-theme="dark"] body{background:var(--bg);color:var(--text);}
-.logo{font-weight:800;letter-spacing:.3px;font-size:20px;display:flex;align-items:center;}
+.logo{font-weight:800;letter-spacing:.3px;font-size:20px;display:flex;align-items:center;gap:4px;}
 [data-theme="dark"] .logo{color:#e2e8f0;}
-.logo-img{height:24px;}
+.logo-img{height:24px;display:block;}
+.logo-img-dark{display:none;}
+[data-theme="dark"] .logo-img-light{display:none;}
+[data-theme="dark"] .logo-img-dark{display:block;}
 [data-theme="dark"] .logo{color:#e2e8f0;}
 .menu{border:none;background:transparent;cursor:pointer}
 [data-theme="dark"] body{background:var(--bg);color:var(--text);}
@@ -54,6 +57,8 @@ textarea{min-height:90px;resize:vertical;font-family:inherit;line-height:1.4}
 .quick-links{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 12px 0}
 .lang{position:relative}
 select{width:100%;padding:8px;border:1px solid var(--line);border-radius:10px;background:#fff}
+[data-theme="dark"] select{background:#0b1220;border-color:#1f2937;color:var(--text);}
+[data-theme="dark"] select option{background:#0b1220;color:var(--text);}
 .hr{height:1px;background:var(--line);margin:8px 0}
 .full{width:100%;}
 .char-row{display:flex;justify-content:flex-end;font-size:11px;color:var(--muted);margin-top:4px}
