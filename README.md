@@ -1,48 +1,50 @@
 # SuMail
 
-이 확장 프로그램은 이메일 내용을 빠르게 요약하고 감정 분석, 번역, 회신 템플릿까지 한 번에 제공하는 Chrome 확장입니다.
+SuMail is a Chrome extension that summarizes email text, analyzes sentiment, translates content, and drafts reply templates in one place.
 
-## 주요 기능
-- **요약**: 입력 또는 선택한 이메일 내용을 한국어로 간결하게 요약.
-- **번역**: 원문을 한국어로 번역(요약과 별도 버튼).
-- **감정 분석**: 단일 지배적 감정과 근거를 한국어로 반환.
-- **회신 템플릿 생성**: 요약 기반 영어 회신 템플릿 생성, 맞춤 지시 포함 가능(300자 제한, 이메일과 무관한 지시는 차단).
-- **컨텍스트 메뉴**: 우클릭 → 선택 영역 요약 / 선택 영역 번역(한국어) 지원.
-- **자동 템플릿 옵션**: 요약 시 템플릿 자동 생성 On/Off(팝업 설정에서 토글).
-- **상태 저장**: 입력/요약/감정/번역/템플릿 결과를 로컬 저장소에 보존.
-- **테마**: 라이트/다크 모드 전환.
-- **언어**: UI/출력 언어 한국어·영어 전환(설정 패널).
+## Features
+- **Summarize**: Quickly summarize entered or selected email text in Korean.
+- **Translate**: Translate source text to Korean (separate from summarize).
+- **Sentiment**: Return a single dominant emotion with a brief rationale (Korean).
+- **Reply templates**: Generate English reply templates from the summary; optional custom instruction (300 chars, email-related only).
+- **Context menu**: Right-click to summarize or translate selected text; opens the popup and auto-runs.
+- **Auto template**: Toggle auto generation during summarize.
+- **State saving**: Preserve input, summary, emotion, translation, and template outputs in local storage.
+- **Themes**: Light/Dark toggle.
+- **Language**: Switch UI/output between Korean and English (settings panel).
 
-## 설치 및 실행
-1. 저장소를 로컬에 다운로드.
-2. Chrome 주소창에 `chrome://extensions` 입력 후 개발자 모드 활성화.
-3. “압축해제된 확장 프로그램을 로드” 버튼을 눌러 프로젝트 폴더를 선택.
-4. 팝업(툴바 아이콘)에서 API 키를 설정하고 사용하세요.
+## Installation
+1. Download this repository locally.
+2. In Chrome, open `chrome://extensions` and enable Developer Mode.
+3. Click “Load unpacked” and select the project folder.
+4. Open the popup (toolbar icon) and set your API key.
 
-## 설정
-- 팝업 오른쪽 상단 톱니 아이콘 클릭 → 설정 패널
-  - **API 키**: OpenAI API 키 입력/저장/삭제.
-  - **사용 모델**: gpt-4o-mini (현재 고정).
-  - **테마**: 다크 모드 토글.
-  - **템플릿 자동 생성**: 요약 시 템플릿 자동 생성 On/Off.
+## Settings
+- Open the settings panel from the popup (gear icon).
+  - **API key**: Enter/save/delete your OpenAI API key.
+  - **Model**: gpt-4o-mini (fixed).
+  - **Theme**: Light/Dark toggle.
+  - **Auto template**: Toggle automatic template generation on summarize.
+  - **Language**: Switch UI/output language (Korean/English).
 
-## 사용 방법
-- **입력**: 최대 2,000자까지 이메일 내용을 붙여넣으면 남은 글자 수가 표시됩니다.
-- **요약하기**: 결과가 `요약` 영역에 표시되며, 자동 생성이 켜져 있으면 템플릿도 생성됩니다.
-- **번역하기**: 결과가 `번역` 영역에 표시됩니다(한국어 고정).
-- **감정 분석**: 단일 감정과 근거를 한국어로 표시합니다.
-- **템플릿 생성**: 맞춤 지시(300자, 이메일 회신 관련만) 입력 후 수동 생성하거나, 자동 생성 옵션을 켭니다.
-- **컨텍스트 메뉴**: 페이지에서 텍스트 선택 후 우클릭 → “선택 영역 요약” 또는 “선택 영역 번역 (한국어)”을 선택하면 팝업이 열리며 자동 실행합니다.
+## Usage
+- **Input**: Paste up to 2,000 characters; remaining count is shown.
+- **Summarize**: Shows a summary; if auto-template is on, a reply template is generated too.
+- **Translate**: Shows Korean translation.
+- **Sentiment**: Shows one emotion label with rationale (Korean).
+- **Template**: Enter a custom instruction (300 chars, must be reply-related) or rely on auto mode.
+- **Context menu**: Select text → right-click → “Summarize selection” or “Translate selection (Korean)” to open the popup and run automatically.
+- **Language**: Change UI/output language in settings; buttons and prompts adapt to the chosen language.
 
-## 권한
-- `storage`: API 키/설정/상태 저장.
-- `activeTab`, `contextMenus`, `scripting`: 선택 영역 요약/번역 컨텍스트 메뉴 및 탭 액세스.
+## Permissions
+- `storage`: Save API key, settings, and state.
+- `activeTab`, `contextMenus`, `scripting`: Context-menu summarize/translate and tab access.
 
-## 아이콘/브랜딩
-- 툴바 및 미리보기 아이콘: `SuMail_biglogo.png` 사용.
-- 팝업 좌상단 로고: `SuMail_logo.png`.
+## Icons/Branding
+- Toolbar and preview icons: `SuMail_biglogo.png`.
+- Popup logo: `SuMail_logo.png`.
 
-## 개발 메모
-- 테마 상태와 설정은 `chrome.storage.sync`, 요약/번역/분석 결과 등은 `chrome.storage.local`에 저장.
-- 입력 길이: 요약/번역 2,000자, 맞춤 지시 300자 제한.
-- 감정 분석: 신뢰도 표기 없이 라벨/근거만 반환.
+## Dev Notes
+- Theme, language, and settings use `chrome.storage.sync`; outputs use `chrome.storage.local`.
+- Limits: summarize/translate input 2,000 chars; custom instruction 300 chars.
+- Sentiment: Returns label and rationale only (no confidence score).
