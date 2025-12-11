@@ -45,7 +45,7 @@ body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,
 .btn.secondary.loading::after{border-color:#13633c;border-top-color:rgba(19,99,60,0.3)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .row{display:flex;gap:8px;align-items:center}
-.input, textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:8px;background:#fff}
+.input, textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:8px;background:var(--card);color:var(--text);}
 [data-theme="dark"] .input,[data-theme="dark"] textarea{background:#0b1220;border-color:#1f2937;color:var(--text);}
 [data-theme="dark"] .input::placeholder,[data-theme="dark"] textarea::placeholder{color:#94a3b8;}
 textarea{min-height:90px;resize:vertical;font-family:inherit;line-height:1.4}
@@ -56,9 +56,9 @@ textarea{min-height:90px;resize:vertical;font-family:inherit;line-height:1.4}
 .table th,.table td{font-size:12px;padding:6px;border-bottom:1px solid var(--line);text-align:left}
 .quick-links{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 12px 0}
 .lang{position:relative}
-select{width:100%;padding:8px;border:1px solid var(--line);border-radius:10px;background:#fff}
-[data-theme="dark"] select{background:#0b1220;border-color:#1f2937;color:var(--text);}
-[data-theme="dark"] select option{background:#0b1220;color:var(--text);}
+select{width:100%;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);box-shadow:0 6px 14px rgba(0,0,0,0.04);}
+[data-theme="dark"] select{background:#0d1524;border-color:#1f2937;color:var(--text);box-shadow:0 6px 18px rgba(0,0,0,0.35);}
+[data-theme="dark"] select option{background:#0d1524;color:var(--text);}
 .hr{height:1px;background:var(--line);margin:8px 0}
 .full{width:100%;}
 .char-row{display:flex;justify-content:flex-end;font-size:11px;color:var(--muted);margin-top:4px}

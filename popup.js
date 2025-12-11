@@ -101,8 +101,15 @@ const I18N = {
   }
 };
 
+function normalizeLang(raw){
+  if(!raw) return "ko";
+  const lower = raw.toLowerCase();
+  if(lower.startsWith("en")) return "en";
+  return "ko";
+}
+
 function t(key,...args){
-  const lang = document.body.dataset.lang || "ko";
+  const lang = normalizeLang(document.body.dataset.lang || "ko");
   const dict = I18N[lang] || I18N.ko;
   const val = dict[key];
   return typeof val === "function" ? val(...args) : (val ?? key);
@@ -122,6 +129,7 @@ function updateCustomCount(){
 
 async function loadSettingsPanel(){
   const {OPENAI_API_KEY, AUTO_TEMPLATE, THEME, LANG} = await getSettings();
+  const normalizedLang = normalizeLang(LANG);
   const apiInput = $("#apiKeySetting");
   const autoCb = $("#autoTemplateSetting");
   const themeCb = $("#themeSelect");
@@ -136,7 +144,7 @@ async function loadSettingsPanel(){
     themeCb.checked = THEME === "dark";
   }
   if(langSel){
-    langSel.value = LANG;
+    langSel.value = normalizedLang;
   }
 }
 
@@ -171,7 +179,8 @@ function applyTheme(theme){
 }
 
 function applyLang(lang){
-  document.body.dataset.lang = lang;
+  const normalized = normalizeLang(lang);
+  document.body.dataset.lang = normalized;
   const map = {
     "#quickLinksBtn": "quickLinks",
     "#btnSummarize": "summarize",
@@ -211,11 +220,11 @@ function applyLang(lang){
   }
   updateCharCount();
   updateCustomCount();
-  const langSelect = $("#langSelect");
-  if(langSelect) langSelect.value = lang;
+    const langSelect = $("#langSelect");
+  if(langSelect) langSelect.value = normalized;
   const translateBtn = $("#btnTranslate");
   if(translateBtn){
-    translateBtn.classList.toggle("hidden", lang === "en");
+    translateBtn.classList.toggle("hidden", normalized === "en");
   }
 }
 
@@ -421,6 +430,7 @@ async function runSummarizeFlow(){
   if(!text){ toast(t("toastNoInput")); return; }
   const {OPENAI_API_KEY, AUTO_TEMPLATE, LANG} = await getSettings();
   if(!OPENAI_API_KEY){ toast(t("toastNoKey")); return; }
+  const lang = normalizeLang(LANG);
   const summarizeBtn = $("#btnSummarize");
   summarizeBtn.disabled = true; summarizeBtn.classList.add("loading");
   $("#summaryOut").innerText = "";
@@ -434,7 +444,7 @@ async function runSummarizeFlow(){
     manualTemplateBtn.classList.remove("hidden");
   }
 
-  const prompt = LANG === "en"
+  const prompt = lang === "en"
     ? [
         "Summarize the following email thread for a busy reader.",
         "Write in natural English, non-literal, business tone.",
@@ -501,13 +511,14 @@ async function runTranslateFlow(){
   if(!text){ toast(t("toastNoInput")); return; }
   const {OPENAI_API_KEY, LANG} = await getSettings();
   if(!OPENAI_API_KEY){ toast(t("toastNoKey")); return; }
+  const lang = normalizeLang(LANG);
   const translateBtn = $("#btnTranslate");
   translateBtn.disabled = true; translateBtn.classList.add("loading");
   $("#translateOut").innerText = "";
   $("#summaryOut").innerText = "";
   updateState({summaryOut: ""});
 
-  const langHint = LANG === "en" ? "Translate into English." : "Translate into Korean.";
+  const langHint = lang === "en" ? "Translate into English." : "Translate into Korean.";
   const prompt = [
     langHint,
     "Keep names, dates, URLs, and placeholders as-is.",
@@ -609,11 +620,12 @@ $("#btnAnalyze").addEventListener("click", async ()=>{
   if(!text){ toast(t("toastNoInput")); return; }
   const {OPENAI_API_KEY, LANG} = await getSettings();
   if(!OPENAI_API_KEY){ toast(t("toastNoKey")); return; }
+  const lang = normalizeLang(LANG);
   const analyzeBtn = $("#btnAnalyze");
   analyzeBtn.disabled = true; analyzeBtn.classList.add("loading");
   $("#emotionOut").innerText = "";
 
-  const prompt = LANG === "en"
+  const prompt = lang === "en"
     ? [
         "Identify the single dominant emotional tone (e.g., positive, neutral, negative, urgent, apologetic). Do not list multiple tones.",
         "Write in natural English. Return exactly one item and a brief rationale so the user understands why. Do not include confidence scores.",
